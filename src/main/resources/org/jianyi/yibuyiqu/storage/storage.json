@@ -1,0 +1,32 @@
+{
+	"table":{
+		"common":{
+			"id":"timeuuid",
+			"name":"text",
+			"attributs":"map<text,text>",
+			"createtime":"timestamp",
+			"updatetime":"timestamp",
+			"primary_key":"(id,name)",
+			"index":"id,name"
+		},
+		"users":{
+			"mail":"text",
+			"password":"text",
+			"lastlogin":"timestamp",
+			"logincount":"int",
+			"loginfaildcount":"int",
+			"sessionid":"text",
+			"index":"mail"
+		}		
+	},
+	"data":{
+		"users":[
+			{
+				"name":"user4",
+				"mail":"user4@abd.com",
+				"password":"user4"
+			}
+		]
+	},
+	"forcecreate":false
+}
