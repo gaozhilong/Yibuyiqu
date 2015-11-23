@@ -15,6 +15,10 @@ storage.json文件是应用的存储结构描述，以及初始化数据。系�
 
 因为使用了[Vert.x](http://vertx.io/)所以应用本身天然就是支持分布式部署的。暂时没有提供Vert.x集群的部署方式，正在实践中。
 
+**独有特性**
+
+不宕机更改运行服务实例数量，不宕机增加新的命令执行服务及更改原有命令执行服务路由。
+
 ### 使用的技术 ###
 - **[Vert.x](http://vertx.io/)** 一个神奇的轻量的消息总线服务，现在的稳定版本是3.0
 - **[Cassandra](http://cassandra.apache.org/)** 分布式的列存储，为了满足应用数据上的扩展存储需要在Cassandra与PostgresSQL之间最终选择了Cassandra。
