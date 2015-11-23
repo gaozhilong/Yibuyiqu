@@ -21,8 +21,8 @@ storage.json文件是应用的存储结构描述，以及初始化数据。系�
 
 ### 使用的技术 ###
 - **[Vert.x](http://vertx.io/)** 一个神奇的轻量的消息总线服务，现在的稳定版本是3.0
-- **[Cassandra](http://cassandra.apache.org/)** 分布式的列存储，为了满足应用数据上的扩展存储需要在Cassandra与PostgresSQL之间最终选择了Cassandra。
-- **[Elasticsearch](http://www.elastic.co/)** 用于日志存储，可以利用其强大的检索功能对日志进行分析。
+- **[Cassandra](http://cassandra.apache.org/)** 分布式的列存储，为了满足应用数据上的扩展存储需要在Cassandra与PostgresSQL之间最终选择了Cassandra(版本2.2.2)。
+- **[Elasticsearch](http://www.elastic.co/)** 用于日志存储，可以利用其强大的检索功能对日志进行分析(版本1.7.3)。
 - **[Hazelcast](http://hazelcast.org/)** 用于session缓存以及必要的集群间信息的共享，虽然Vert.x本身也是使用Hazelcast来共享数据，但是为了使应用自身的数据共享更加明确和可定制还是创建了自己的Hazelcast实例。
 
 ### 使用的语言 ###
@@ -36,7 +36,7 @@ storage.json文件是应用的存储结构描述，以及初始化数据。系�
 
 ### 如何运行 ###
 - 启动如下服务：
-**[Cassandra](http://cassandra.apache.org/)**，**[Elasticsearch](http://www.elastic.co/)** 当然您可以根据您的需要修改端口以及其他的实例参数。幸运的是它们都可以在下载后直接启动。
+**[Cassandra](http://cassandra.apache.org/)2.2.2**，**[Elasticsearch](http://www.elastic.co/)1.7.3** 当然您可以根据您的需要修改端口以及其他的实例参数。幸运的是它们都可以在下载后直接启动。
 - 修改应用中的配置文件，它们的位置: **src\main\resources\org\jianyi\yibuyiqu**
 下面有两个配置文件：
 config.json是应用的主要配置文件，配置了每个必要服务的具体实现以及他们启动需要的参数。主要关注的两个服务是CassandraService以及ElasticService。如果您没有修改过 **[Cassandra](http://cassandra.apache.org/)**以及**[Elasticsearch](http://www.elastic.co/)** 的配置那么可能您不需要进行修改，如果您修改过，那么请根据修改的具体端口等参数进行配置。
