@@ -196,30 +196,33 @@ class CassandraClient {
 		JsonObject wheres = jsonObject.getJsonObject(DataObjectAttribute.where.toString())
 		CassandraTable tableModel = dbstructure.getTableModels().get(tname)
 		Select select = QueryBuilder.select().from(keyspace, tableModel.getName())
-		Map<String, Object> whereParas = wheres.getMap()
-		Set<String> whereKeys = whereParas.keySet()
 		Map<String, String> attributs = tableModel.getAttrbuts()
-		//定义了的查询属性
-		List<String> keys = tableModel.getKeys()
-
-		for (String key : whereKeys) {
-			if (keys.contains(key)) {
-				String type = attributs.get(key)
-				switch (type) {
-					case "timeuuid":
-						select.where(QueryBuilder.eq(key, UUID.fromString(whereParas.get(key).toString())))
-						break
-					case "text":
-						select.where(QueryBuilder.eq(key, whereParas.get(key).toString()))
-						break
-					case "timestamp":
-						select.where(QueryBuilder.eq(key, StringUtils.getDate(whereParas.get(key).toString())))
-						break
-					case "int":
-						select.where(QueryBuilder.eq(key, Integer.parseInt(whereParas.get(key).toString())))
-						break
-					default:
-						select.where(QueryBuilder.eq(key, whereParas.get(key).toString()))
+		if (wheres != null) {
+			Map<String, Object> whereParas = wheres.getMap()
+			Set<String> whereKeys = whereParas.keySet()
+			
+			//定义了的查询属性
+			List<String> keys = tableModel.getKeys()
+	
+			for (String key : whereKeys) {
+				if (keys.contains(key)) {
+					String type = attributs.get(key)
+					switch (type) {
+						case "timeuuid":
+							select.where(QueryBuilder.eq(key, UUID.fromString(whereParas.get(key).toString())))
+							break
+						case "text":
+							select.where(QueryBuilder.eq(key, whereParas.get(key).toString()))
+							break
+						case "timestamp":
+							select.where(QueryBuilder.eq(key, StringUtils.getDate(whereParas.get(key).toString())))
+							break
+						case "int":
+							select.where(QueryBuilder.eq(key, Integer.parseInt(whereParas.get(key).toString())))
+							break
+						default:
+							select.where(QueryBuilder.eq(key, whereParas.get(key).toString()))
+					}
 				}
 			}
 		}
